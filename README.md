@@ -171,7 +171,7 @@ Gradio Dashboard (Real-Time Prediction + Data-Driven Insights)
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/credit-risk-analyzer.git
+git clone https://github.com/SatyamKumarCS/credit-risk-analyzer.git
 cd credit-risk-analyzer
 
 # 2. Create virtual environment

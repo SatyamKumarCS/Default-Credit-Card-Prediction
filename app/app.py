@@ -7,7 +7,7 @@
 
 import sys, os
 
-# ── Path Setup (works regardless of CWD) ──────────────────────────────
+# Path Setup (works regardless of CWD)
 BASE_DIR  = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, BASE_DIR)
 
@@ -18,7 +18,7 @@ import gradio as gr
 from src.predict import load_model, predict
 from src.features import add_feature
 
-# ── Load ML Artefacts ──────────────────────────────────────────────────
+# Load ML Artefacts 
 MODEL_PATH  = os.path.join(BASE_DIR, "models", "best_model.pkl")
 SCALER_PATH = os.path.join(BASE_DIR, "models", "scaler.pkl")
 
@@ -27,9 +27,8 @@ SCALER = joblib.load(SCALER_PATH)
 EXPECTED_COLS = list(SCALER.feature_names_in_)
 
 
-# ═══════════════════════════════════════════════════════════════════════
 #  PREDICTION ENGINE
-# ═══════════════════════════════════════════════════════════════════════
+
 def run_prediction(
     name, age, gender, education, marital,
     credit_limit, bill1, bill2, bill3, bill4, bill5, bill6,
@@ -212,9 +211,8 @@ def run_prediction(
     return result_html
 
 
-# ═══════════════════════════════════════════════════════════════════════
 #  THEME
-# ═══════════════════════════════════════════════════════════════════════
+
 theme = gr.themes.Base(
     primary_hue=gr.themes.colors.emerald,
     secondary_hue=gr.themes.colors.slate,
@@ -234,9 +232,9 @@ theme = gr.themes.Base(
 )
 
 
-# ═══════════════════════════════════════════════════════════════════════
+
 #  CUSTOM CSS
-# ═══════════════════════════════════════════════════════════════════════
+
 CSS = """
 /* ─── GLOBAL ─── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -649,9 +647,8 @@ input[type="number"]::-webkit-outer-spin-button {
 """
 
 
-# ═══════════════════════════════════════════════════════════════════════
+
 #  BUILD UI
-# ═══════════════════════════════════════════════════════════════════════
 with gr.Blocks(title="CreditRisk Enterprise — AI Engine") as demo:
 
     # ── Header ──
@@ -789,10 +786,7 @@ with gr.Blocks(title="CreditRisk Enterprise — AI Engine") as demo:
     ]
     btn.click(fn=run_prediction, inputs=all_inputs, outputs=pred_out)
 
-
-# ═══════════════════════════════════════════════════════════════════════
 #  LAUNCH
-# ═══════════════════════════════════════════════════════════════════════
 if __name__ == "__main__":
     PORT = int(os.environ.get("PORT", 7860))
 
