@@ -3,8 +3,7 @@ title: Credit Risk Analyzer
 emoji: 💳
 colorFrom: blue
 colorTo: indigo
-sdk: gradio
-sdk_version: 4.44.1
+sdk: streamlit
 app_file: app.py
 pinned: false
 ---
@@ -13,7 +12,7 @@ pinned: false
 
 **Explainable Machine Learning Lending System**
 
-An end-to-end machine learning system that predicts credit card default risk, provides explainable AI insights via SHAP, and serves real-time decisions through a production-grade Gradio dashboard — built to mirror how fintech lending teams actually evaluate borrowers.
+An end-to-end machine learning system that predicts credit card default risk, provides explainable AI insights via SHAP, and serves real-time decisions through a production-grade Streamlit dashboard — built to mirror how fintech lending teams actually evaluate borrowers.
 
 ---
 
@@ -37,7 +36,7 @@ This project builds a **complete credit risk pipeline**: from raw transaction da
 
 - **Full ML Pipeline** — data ingestion, feature engineering, preprocessing, model training, evaluation, and serving
 - **Explainability** — SHAP-based feature importance analysis for every prediction (why did the model decide this?)
-- **Production UI** — dark-themed fintech dashboard built with Gradio, responsive and deployment-ready
+- **Production UI** — dark-themed fintech dashboard built with Streamlit, responsive and deployment-ready
 - **Engineered Features** — 8 derived financial indicators (credit utilization, payment ratio, delay severity, bill trends)
 - **Data-Driven Insights** — automated risk factor analysis explaining each prediction with color-coded reasoning
 - **Deployment-Ready** — environment variable configuration, absolute path resolution, single-command launch
@@ -51,7 +50,7 @@ This project builds a **complete credit risk pipeline**: from raw transaction da
 | Language | Python 3.12 |
 | ML Framework | scikit-learn |
 | Explainability | SHAP |
-| Web UI | Gradio (Blocks API) |
+| Web UI | Streamlit |
 | Data | Pandas, NumPy |
 | Serialization | Joblib |
 | Dataset | UCI Taiwan Credit Card Default (30,000 records) |
@@ -75,7 +74,7 @@ flowchart TB
     end
 
     subgraph SERVE["Serving Layer"]
-        H[Gradio Dashboard] --> I[User Input]
+        H[Streamlit Dashboard] --> I[User Input]
         I --> J[Feature Transform]
         J --> K[Model Inference]
         K --> L[Risk Score + Insights]
@@ -115,7 +114,7 @@ credit-risk-analyzer/
 ├── models/
 │   ├── best_model.pkl                        # Trained Logistic Regression model
 │   └── scaler.pkl                            # Fitted StandardScaler
-├── app.py                                    # Gradio dashboard (single-file, self-contained)
+├── app.py                                    # Streamlit dashboard (single-file, self-contained)
 ├── data/
 │   ├── credit_card_default_dataset.csv       # Raw UCI dataset
 │   └── processed_data.pkl                    # Preprocessed feature matrix
@@ -158,7 +157,7 @@ Evaluation (ROC-AUC, Confusion Matrix, Classification Report)
 SHAP Explainability (Global + Local Feature Importance)
     │
     ▼
-Gradio Dashboard (Real-Time Prediction + Data-Driven Insights)
+Streamlit Dashboard (Real-Time Prediction + Data-Driven Insights)
 ```
 
 ---
@@ -200,10 +199,10 @@ pip install -r requirements.txt
 ### Run the Dashboard
 
 ```bash
-python app.py
+streamlit run app.py
 ```
 
-Opens at **http://localhost:7860**
+Opens at **http://localhost:8501**
 
 ### Run the Notebooks
 
@@ -230,7 +229,7 @@ python src/train.py
 
 - **Threshold Optimization** — tune decision threshold using precision-recall tradeoff for business-specific cost matrices
 - **Model Upgrades** — experiment with XGBoost, LightGBM, and neural networks for improved AUC
-- **Cloud Deployment** — containerize with Docker, deploy to Render / HuggingFace Spaces
+- **Cloud Deployment** — containerize with Docker, deploy to Streamlit Community Cloud / Render
 - **Monitoring** — add prediction drift detection and model performance tracking
 - **Batch Processing** — CSV upload for bulk risk assessment
 - **API Layer** — FastAPI endpoint for programmatic integration
@@ -244,7 +243,7 @@ python src/train.py
 - End-to-end ML system: data → features → model → explainability → UI
 - Engineered 8 domain-specific financial features from raw transaction data
 - SHAP-powered explainability — not just predictions, but *why*
-- Production-grade Gradio dashboard with dark fintech aesthetic
+- Production-grade Streamlit dashboard with dark fintech aesthetic
 - Clean, modular codebase with separated concerns (src / app / notebooks)
 - Deployment-ready with environment variable configuration
 
