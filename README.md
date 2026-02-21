@@ -1,3 +1,14 @@
+---
+title: Credit Risk Analyzer
+emoji: 💳
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.1
+app_file: app.py
+pinned: false
+---
+
 # Credit Risk Analyzer
 
 **Explainable Machine Learning Lending System**
@@ -104,8 +115,7 @@ credit-risk-analyzer/
 ├── models/
 │   ├── best_model.pkl                        # Trained Logistic Regression model
 │   └── scaler.pkl                            # Fitted StandardScaler
-├── app/
-│   └── app.py                                # Gradio dashboard (single-file, self-contained)
+├── app.py                                    # Gradio dashboard (single-file, self-contained)
 ├── data/
 │   ├── credit_card_default_dataset.csv       # Raw UCI dataset
 │   └── processed_data.pkl                    # Preprocessed feature matrix
@@ -190,7 +200,7 @@ pip install -r requirements.txt
 ### Run the Dashboard
 
 ```bash
-python app/app.py
+python app.py
 ```
 
 Opens at **http://localhost:7860**
