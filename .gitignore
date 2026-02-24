@@ -1,1 +1,13 @@
-.venv
+.venv/
+venv/
+env/
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
+.streamlit/secrets.toml
