@@ -508,7 +508,7 @@ with left:
     </div>
     """, unsafe_allow_html=True)
 
-    tab1, tab2, tab3 = st.tabs(["👤  Demographics", "💳  Credit Profile", "📊  Financials"])
+    tab1, tab2 = st.tabs(["👤  Demographics", "📊  Financials"])
 
     with tab1:
         name_in = st.text_input("Client Full Name", placeholder="e.g. Sarah Johnson", label_visibility="visible")
@@ -524,12 +524,12 @@ with left:
         with c4:
             marital_in = st.selectbox("Marital Status", ["Single", "Married", "Others"])
 
-    with tab2:
+        st.markdown("**Credit Profile**")
         credit_in    = st.slider("Credit Limit ($)", 5_000, 1_000_000, 80_000, 5_000)
         pay_delay_in = st.slider("Payment Delay (months)", -1, 9, 0)
         st.caption("-1 = Paid duly  |  0 = No delay  |  1–9 = Months overdue")
 
-    with tab3:
+    with tab2:
         st.markdown("**Billing History — 6 Months**")
         bc1, bc2 = st.columns(2)
         with bc1:
