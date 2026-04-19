@@ -7,7 +7,6 @@ sdk: streamlit
 app_file: app.py
 pinned: false
 ---
-
 # Credit Risk Analyzer & Agentic Underwriting Copilot
 
 **Explainable AI Lending System with Automated OCR Agent**
