@@ -4,7 +4,7 @@ import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 
-def train(X_Train,X_Test,Y_Train,Y_Test,save_path:"../models/best_model.pkl"):
+def train(X_Train,X_Test,Y_Train,Y_Test,save_path="../models/best_model.pkl"):
     model=LogisticRegression()
     model.fit(X_Train,Y_Train)
 

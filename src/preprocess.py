@@ -1,11 +1,12 @@
 import pandas as pd
 import numpy as np
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 def preprocess(df,scaler_path="../models/scaler.pkl"):
     # One-hot encoding
-    df=df.get_dummies(df,columns=["SEX","EDUCATION","MARRIAGE"],drop_first=True)
+    df=pd.get_dummies(df,columns=["SEX","EDUCATION","MARRIAGE"],drop_first=True)
 
     X=df.drop("Default",axis=1)
     Y=df['Default']
