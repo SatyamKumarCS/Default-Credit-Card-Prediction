@@ -4,8 +4,6 @@ No emojis as requested.
 """
 import sys
 import os
-import json
-import base64
 from io import BytesIO
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
