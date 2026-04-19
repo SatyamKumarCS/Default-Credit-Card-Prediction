@@ -8,19 +8,19 @@ app_file: app.py
 pinned: false
 ---
 
-# Credit Risk Analyzer
+# Credit Risk Analyzer & Agentic Underwriting Copilot
 
-**Explainable Machine Learning Lending System**
+**Explainable AI Lending System with Automated OCR Agent**
 
-An end-to-end machine learning system that predicts credit card default risk, provides explainable AI insights via SHAP, and serves real-time decisions through a production-grade Streamlit dashboard — built to mirror how fintech lending teams actually evaluate borrowers.
+An end-to-end machine learning system that predicts credit card default risk, provides explainable AI insights via SHAP, and features a built-in LangChain Agentic Copilot to automate document parsing via OCR.
 
 ---
 
 ## Problem Statement
 
-Consumer credit default costs financial institutions billions annually. Traditional rule-based underwriting misses complex, non-linear patterns in borrower behavior — patterns that machine learning captures effectively.
+Consumer credit default costs financial institutions billions annually. Traditional manual underwriting misses complex patterns, and loan officers spend countless hours manually extracting data from messy bank statements.
 
-This project builds a **complete credit risk pipeline**: from raw transaction data to a deployable web interface that a lending analyst could use to evaluate a client in under 30 seconds, with full model transparency and explainability.
+This project solves both problems by building a **complete credit risk pipeline**. It includes an **Automated Underwriting Copilot** that uses an LLM to extract data from raw PDFs, runs it through the machine learning model, relies on SHAP explainability, and enforces a "Human-in-the-Loop" workflow for grey-zone risk predictions.
 
 ---
 
@@ -72,16 +72,22 @@ flowchart TB
     subgraph ML["ML Pipeline"]
         C --> D[Feature Engineering]
         D --> E["Model Training<br/>(Logistic Regression)"]
-        E --> F[Evaluation — ROC-AUC, Confusion Matrix]
+        E --> F[Evaluation — ROC-AUC]
         E --> G[SHAP Explainability]
     end
 
+    subgraph AGENT ["Agentic AI Copilot"]
+        RAW[Raw Bank Statement PDF] -->|OCR+LLM| Agent[LangChain Agent]
+    end
+
     subgraph SERVE["Serving Layer"]
+        Agent -.->|Structured Features| I
         H[Streamlit Dashboard] --> I[User Input]
         I --> J[Feature Transform]
         J --> K[Model Inference]
         K --> L[Risk Score + Insights]
         L --> H
+        L -.->|Report Gen| Agent
     end
 
     subgraph ARTIFACTS["Persisted Artifacts"]
@@ -90,11 +96,6 @@ flowchart TB
         M --> K
         N --> J
     end
-
-    style DATA fill:#0f172a,stroke:#1e293b,color:#e2e8f0
-    style ML fill:#0f172a,stroke:#1e293b,color:#e2e8f0
-    style SERVE fill:#0f172a,stroke:#1e293b,color:#e2e8f0
-    style ARTIFACTS fill:#0f172a,stroke:#1e293b,color:#e2e8f0
 ```
 
 ---
@@ -257,12 +258,11 @@ python src/train.py
 
 > Designed for recruiters and reviewers scanning in 30 seconds.
 
-- End-to-end ML system: data → features → model → explainability → UI
-- Engineered 8 domain-specific financial features from raw transaction data
-- SHAP-powered explainability — not just predictions, but *why*
-- Production-grade Streamlit dashboard with dark fintech aesthetic
-- Clean, modular codebase with separated concerns (src / app / notebooks)
-- Deployment-ready with environment variable configuration
+- **Agentic Underwriting Copilot**: Automates PDF extraction and decision orchestration via LangChain & Groq Llama 3.3.
+- **Human-in-the-Loop**: Safely flags "Grey Zone" applicants for mandatory manual overriding.
+- **End-to-End ML System**: Data ingestion → Features → Model → Explainability → UI.
+- **SHAP-powered explainability**: Not just raw predictions, but *why* they happened.
+- **Production-grade**: Streamlit dashboard with dark fintech aesthetics and environment management.
 
 ---
 
