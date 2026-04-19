@@ -102,6 +102,23 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+with st.expander("Instructions: What this Copilot does and how to use it", expanded=False):
+    st.markdown("""
+    **What this Copilot does:**
+    This tool functions as an AI-powered underwriting assistant. It automatically extracts financial features from raw bank statements via an LLM and passes them into our predictive ML model. 
+    It then returns a human-readable risk report based on SHAP (explainable AI) factors to help loan officers easily understand *why* the prediction was made.
+    
+    **How to use it:**
+    1. **Upload a PDF Document** (or select a built-in demo profile under **Test with Demo Data**).
+    2. Click **Process Document** (or **Use Selected Demo Profile**).
+    3. The Copilot will autonomously:
+       - Extract unstructured data directly into our 24 required ML features.
+       - Run the Logistic Regression inference pipeline under the hood.
+       - Explain the Risk Score using SHAP variables formatted in plain English.
+       - Output a readable recommendation report indicating if a human review is required.
+    4. You can then use the chat box to ask follow-up questions about the applicant's data!
+    """)
+
 
 if not os.environ.get("GROQ_API_KEY"):
     st.error("GROQ_API_KEY is not set in the environment. Please add it to your .env file or environment variables.")

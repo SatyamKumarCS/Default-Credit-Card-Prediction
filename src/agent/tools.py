@@ -83,10 +83,34 @@ def explain_with_shap(features_json: str) -> str:
         
         top_features = feature_impacts[:5]
         
+        feature_name_mapping = {
+            "LIMIT_BAL": "Credit Limit Amount",
+            "SEX_1": "Gender (Male)", "SEX_2": "Gender (Female)",
+            "EDUCATION_1": "Education (Graduate)", "EDUCATION_2": "Education (University)", "EDUCATION_3": "Education (High School)", "EDUCATION_4": "Education (Other)",
+            "MARRIAGE_1": "Marital Status (Married)", "MARRIAGE_2": "Marital Status (Single)", "MARRIAGE_3": "Marital Status (Other)",
+            "AGE": "Age in Years",
+            "PAY_0": "Most Recent Payment Delay",
+            "PAY_2": "Payment Delay (2 months ago)", "PAY_3": "Payment Delay (3 months ago)", "PAY_4": "Payment Delay (4 months ago)", "PAY_5": "Payment Delay (5 months ago)", "PAY_6": "Payment Delay (6 months ago)",
+            "BILL_AMT1": "Most Recent Bill Amount",
+            "BILL_AMT2": "Bill Amount (2 months ago)", "BILL_AMT3": "Bill Amount (3 months ago)", "BILL_AMT4": "Bill Amount (4 months ago)", "BILL_AMT5": "Bill Amount (5 months ago)", "BILL_AMT6": "Bill Amount (6 months ago)",
+            "PAY_AMT1": "Most Recent Payment Amount",
+            "PAY_AMT2": "Payment Amount (2 months ago)", "PAY_AMT3": "Payment Amount (3 months ago)", "PAY_AMT4": "Payment Amount (4 months ago)", "PAY_AMT5": "Payment Amount (5 months ago)", "PAY_AMT6": "Payment Amount (6 months ago)",
+            "AVG_BILL_AMT": "Average Bill Amount",
+            "CREDIT_UTILITY": "Credit Utilization Ratio",
+            "AVG_PAY_AMT": "Average Payment Amount",
+            "AVG_PAY_DELAY": "Average Payment Delay",
+            "PAYMENT_TO_BILL": "Payment to Bill Ratio",
+            "MAX_PAY_DELAY": "Maximum Payment Delay (Severity)",
+            "NUM_LATE_MONTHS": "Number of Late Payments",
+            "PAYMENT_STD": "Payment Variation",
+            "SEVERE_DELAY_FLAG": "Severe Delay Warning Indicator",
+        }
+        
         explanation = "Top influencing factors for this prediction:\n"
         for fname, impact in top_features:
+            readable_name = feature_name_mapping.get(fname, fname)
             direction = "Increased risk" if impact > 0 else "Decreased risk"
-            explanation += f"- {fname}: {direction} (magnitude: {abs(impact):.4f})\n"
+            explanation += f"- **{readable_name}**: {direction} (magnitude: {abs(impact):.4f})\n"
             
         return explanation
     except Exception as e:
