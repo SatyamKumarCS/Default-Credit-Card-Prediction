@@ -552,7 +552,7 @@ with left:
             p5 = st.number_input("Month 5 Paid ($)", value=4700, step=100)
             p6 = st.number_input("Month 6 Paid ($)", value=5000, step=100)
 
-    analyze = st.button("🔍  Analyze Risk Profile", use_container_width=True)
+    analyze = st.button("🔍  Analyze Risk Profile", width="stretch")
 
 with right:
     st.markdown("""

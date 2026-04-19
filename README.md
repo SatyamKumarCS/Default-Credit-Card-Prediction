@@ -34,6 +34,9 @@ This project builds a **complete credit risk pipeline**: from raw transaction da
 
 ## Features
 
+- **Agentic AI Copilot** — LangChain-powered ReAct agent that automates document data extraction and context-aware financial Q&A (Powered by Groq Llama 3.3).
+- **Automated Underwriting OCR** — Intelligent PDF text parsing connected directly to the structured feature pipeline models.
+- **Human-in-the-Loop Risk Profiling** — Grey-zone escalation flow requiring manual review when AI confidence dips below safe thresholds.
 - **Full ML Pipeline** — data ingestion, feature engineering, preprocessing, model training, evaluation, and serving
 - **Explainability** — SHAP-based feature importance analysis for every prediction (why did the model decide this?)
 - **Production UI** — dark-themed fintech dashboard built with Streamlit, responsive and deployment-ready
@@ -190,19 +193,33 @@ source venv/bin/activate        # macOS/Linux
 
 # 3. Install dependencies
 pip install -r requirements.txt
+
+# 4. Environment Variables
+cp .env.example .env
+# Open .env and add your GROQ_API_KEY for the AI Copilot to work
 ```
 
 ---
 
 ## Usage
 
-### Run the Dashboard
+### Run the Dashboard & AI Copilot
+
+The dashboard is now a multi-page app. The home page is the manual risk analyzer, and the sidebar contains the AI Underwriting Copilot.
 
 ```bash
 streamlit run app.py
 ```
 
 Opens at **http://localhost:8501**
+
+### Generate Sample Statement
+If you want to test the AI Copilot without using a real bank statement, generate the dummy PDF by running:
+
+```bash
+python scripts/generate_sample_pdf.py
+```
+This will create a `samples/sample_statement.pdf` file you can upload to the Copilot.
 
 ### Run the Notebooks
 
