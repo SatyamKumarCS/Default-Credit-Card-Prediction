@@ -1,16 +1,17 @@
 """
 Credit Risk Analyzer — Streamlit Dark Dashboard
 """
-import sys, os
+import sys
+import os
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, BASE_DIR)
 
-import numpy as np
-import pandas as pd
-import joblib
-import streamlit as st
-from src.predict import load_model, predict
-from src.features import add_feature
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+import joblib  # noqa: E402
+import streamlit as st  # noqa: E402
+from src.predict import load_model, predict  # noqa: E402
+from src.features import add_feature  # noqa: E402
 
 MODEL_PATH  = os.path.join(BASE_DIR, "models", "best_model.pkl")
 SCALER_PATH = os.path.join(BASE_DIR, "models", "scaler.pkl")
@@ -285,7 +286,8 @@ def client_profile_html(name, age, ps, avg_pay):
 def insight_row(level, label, value, desc):
     color_map = {"critical":"#F78166","warning":"#E3B341","good":"#3FB950"}
     icon_map  = {"critical":"❌","warning":"⚠️","good":"✅"}
-    c = color_map[level]; ic = icon_map[level]
+    c = color_map[level]
+    ic = icon_map[level]
     return f"""
 <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;
             background:#0D1117;border-radius:10px;border:1px solid {c}22;">
@@ -378,17 +380,20 @@ def build_result(name, age, gender, education, marital,
 
     # ── risk tier ─────────────────────────────────────────────────────────────
     if pct < 30:
-        risk_color = "#3FB950"; risk_label = "LOW RISK"
+        risk_color = "#3FB950"
+        risk_label = "LOW RISK"
         risk_emoji = "✅"
         rec_text   = "Strong repayment profile. Client shows consistent financial discipline. <strong>Approval recommended</strong> with standard terms."
         bar_color  = "linear-gradient(90deg,#3FB950,#2EA043)"
     elif pct < 60:
-        risk_color = "#E3B341"; risk_label = "MEDIUM RISK"
+        risk_color = "#E3B341"
+        risk_label = "MEDIUM RISK"
         risk_emoji = "⚠️"
         rec_text   = "Moderate risk indicators present. Irregular payment patterns. <strong>Additional review recommended</strong>."
         bar_color  = "linear-gradient(90deg,#E3B341,#BB8A00)"
     else:
-        risk_color = "#F78166"; risk_label = "HIGH RISK"
+        risk_color = "#F78166"
+        risk_label = "HIGH RISK"
         risk_emoji = "❌"
         rec_text   = "High probability of default. Significant repayment risk. <strong>Decline recommended</strong>."
         bar_color  = "linear-gradient(90deg,#F78166,#DA3633)"

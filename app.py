@@ -4,16 +4,14 @@ No emojis as requested.
 """
 import sys
 import os
-from io import BytesIO
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, BASE_DIR)
 
-import streamlit as st
-import pandas as pd
-from dotenv import load_dotenv
-from src.agent.copilot import UnderwritingCopilot
-from src.agent.extractor import extract_text
+import streamlit as st  # noqa: E402
+import pandas as pd  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
+from src.agent.copilot import UnderwritingCopilot  # noqa: E402
 
 # Load environment variables
 load_dotenv()

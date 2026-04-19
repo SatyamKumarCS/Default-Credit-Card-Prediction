@@ -4,7 +4,7 @@ import sys
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, BASE_DIR)
 
-from src.predict import load_model
+from src.predict import load_model  # noqa: E402
 
 def test_model_loading():
     """Test to ensure that the trained model exists and can be loaded properly."""

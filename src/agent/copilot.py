@@ -1,5 +1,4 @@
 import json
-import os
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from src.agent.tools import predict_default_risk, explain_with_shap
