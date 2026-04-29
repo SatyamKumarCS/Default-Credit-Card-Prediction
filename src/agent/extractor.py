@@ -19,6 +19,9 @@ def extract_text(file_path: str) -> str:
         return f"Error extracting PDF: {str(e)}"
     return text
 
+
+
+
 def parse_features(text: str) -> dict:
     """Use the LLM to parse raw text into structured features."""
     api_key = os.environ.get("GROQ_API_KEY")
